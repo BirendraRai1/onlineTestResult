@@ -17,7 +17,7 @@ function generateToken(user) {
 /**
  * Login required middleware
  */
-exports.ensureAuthenticated = function(req, res, next) {
+ exports.ensureAuthenticated = function(req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -28,7 +28,7 @@ exports.ensureAuthenticated = function(req, res, next) {
    * POST /login
    * Sign in with email and password
    */
-  exports.loginPost = function(req, res, next) {
+   exports.loginPost = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('email', 'Email cannot be blank').notEmpty();
     req.assert('password', 'Password cannot be blank').notEmpty();
@@ -43,7 +43,7 @@ exports.ensureAuthenticated = function(req, res, next) {
     User.findOne({ email: req.body.email }, function(err, user) {
       if (!user) {
         return res.status(401).send({ msg: 'The email address ' + req.body.email + ' is not associated with any account. ' +
-        'Double-check your email address and try again.'
+          'Double-check your email address and try again.'
         });
       }
       user.comparePassword(req.body.password, function(err, isMatch) {
@@ -58,7 +58,7 @@ exports.ensureAuthenticated = function(req, res, next) {
 /**
  * POST /signup
  */
-exports.signupPost = function(req, res, next) {
+ exports.signupPost = function(req, res, next) {
   req.assert('name', 'Name cannot be blank').notEmpty();
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('email', 'Email cannot be blank').notEmpty();
@@ -73,7 +73,7 @@ exports.signupPost = function(req, res, next) {
 
   User.findOne({ email: req.body.email }, function(err, user) {
     if (user) {
-    return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' });
+      return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' });
     }
     user = new User({
       name: req.body.name,
@@ -81,7 +81,7 @@ exports.signupPost = function(req, res, next) {
       password: req.body.password
     });
     user.save(function(err) {
-    res.send({ token: generateToken(user), user: user });
+      res.send({ token: generateToken(user), user: user });
     });
   });
 };
@@ -89,7 +89,7 @@ exports.signupPost = function(req, res, next) {
 /**
  * DELETE /account
  */
-exports.accountDelete = function(req, res, next) {
+ exports.accountDelete = function(req, res, next) {
   User.remove({ _id: req.user.id }, function(err) {
     res.send({ msg: 'Your account has been permanently deleted.' });
   });
@@ -98,18 +98,18 @@ exports.accountDelete = function(req, res, next) {
 
 exports.forgotPost = function(req, res, next) {
   
-      User.findOne({ email: req.body.email }, function(err, user) {
-        if (err) {
-          console.log("server error");
-          return res.status(500).send({ msg: 'The server error' });
-        }
-        if(user==null || user==undefined){
-          console.log("user is null");
-          res.send({msg: 'User Not Found'})
-        }
-        else{
-          if (req.body.password != req.body.confirm) {
-          console.log('newPassword and confirmPassword should match')
+  User.findOne({ email: req.body.email }, function(err, user) {
+    if (err) {
+      console.log("server error");
+      return res.status(500).send({ msg: 'The server error' });
+    }
+    if(user==null || user==undefined){
+      console.log("user is null");
+      res.send({msg: 'User Not Found'})
+    }
+    else{
+      if (req.body.password != req.body.confirm) {
+        console.log('newPassword and confirmPassword should match')
           //res.render('../public/partials/forgot.html')
           //res.redirect('/')
         } else {
@@ -122,15 +122,15 @@ exports.forgotPost = function(req, res, next) {
             return res.send({ token: generateToken(user), user: user });
           })
         }
-        }
-        
-      });
+      }
+      
+    });
 }
 /**
  * POST /auth/facebook
  * Sign in with Facebook
  */
-exports.authFacebook = function(req, res) {
+ exports.authFacebook = function(req, res) {
   var profileFields = ['id', 'name', 'email', 'gender', 'location'];
   var accessTokenUrl = 'https://graph.facebook.com/v2.11/oauth/access_token';
   var graphApiUrl = 'https://graph.facebook.com/v2.11/me?fields=' + profileFields.join(',');
@@ -205,7 +205,7 @@ exports.authFacebookCallback = function(req, res) {
  * POST /auth/google
  * Sign in with Google
  */
-exports.authGoogle = function(req, res) {
+ exports.authGoogle = function(req, res) {
 
   var accessTokenUrl = 'https://accounts.google.com/o/oauth2/token';
   var peopleApiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect';

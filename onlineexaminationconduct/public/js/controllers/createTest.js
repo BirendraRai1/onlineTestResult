@@ -1,17 +1,17 @@
 angular.module('MyApp')
-  .controller('createTestCtrl', function($scope, $rootScope, $location, $route, $routeParams, $window, $auth, Account, TestsApi) {
-    $scope.profile = $rootScope.currentUser;
-    $scope.adminCheck = function(){
-      if ($scope.profile.email == "birendrabit123@gmail.com") {}else{
-        alert("You're Not Authorized To View This Page")
-        $location.path( "/dashboard" );
-      }
-    };
-    $scope.adminCheck();
+.controller('createTestCtrl', function($scope, $rootScope, $location, $route, $routeParams, $window, $auth, Account, TestsApi) {
+  $scope.profile = $rootScope.currentUser;
+  $scope.adminCheck = function(){
+    if ($scope.profile.email == "birendrabit123@gmail.com") {}else{
+      alert("You're Not Authorized To View This Page")
+      $location.path( "/dashboard" );
+    }
+  };
+  $scope.adminCheck();
     //createTest start
     $scope.createTest = function() {
       if ($scope.profile.email == "birendrabit123@gmail.com") {
-      TestsApi.createTest($scope.test)
+        TestsApi.createTest($scope.test)
         .then(function(response) {
           //console.log(response.data);
           // console.log("reached create test"+ response.data.message);
@@ -20,8 +20,8 @@ angular.module('MyApp')
           };
           if (response.data.error === false) {
             //console.log(response.data.data._id);
-              $location.path('/viewtest/'+response.data.data._id);
-              console.log("no error");
+            $location.path('/viewtest/'+response.data.data._id);
+            console.log("no error");
           }
         })
         .catch(function(response) {
@@ -36,4 +36,4 @@ angular.module('MyApp')
     };
 //createTest end
 
-  });
+});

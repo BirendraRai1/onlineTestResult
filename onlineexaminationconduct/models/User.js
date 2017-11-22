@@ -11,7 +11,7 @@ var userSchema = new mongoose.Schema({
   location: String,
   picture: String,
   facebook: String,
-  });
+});
 
 userSchema.pre('save', function(next) {
   var user = this;

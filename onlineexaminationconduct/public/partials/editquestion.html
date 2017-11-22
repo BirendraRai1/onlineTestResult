@@ -1,6 +1,5 @@
 <div class="container">
-<h1 class="text-center red" >Create An Test</h1><br>
-  <div class="hr-title"><span>************</span></div>
+  <h1 class="text-center red" >Create An Test</h1><br>
   <div class="panel">
     <div class="panel-body">
       <div ng-if="messages.error" role="alert" class="alert alert-danger">
@@ -15,8 +14,8 @@
 
       </div>
 
-<div class="col-md-3">  </div>
-    <form ng-submit="updateQuestion()" class="col-md-6">
+      <div class="col-md-3">  </div>
+      <form ng-submit="updateQuestion()" class="col-md-6">
         <legend class="h2">Question Details</legend>
         <div class="form-group">
           <label for="question"> Question</label>
@@ -41,7 +40,7 @@
         <div class="form-group">
           <!-- <label for="text">Answer :</label> -->
           <!-- <input type="text" name="answer" id="answer"  required placeholder="Answer"   class="form-control" ng-model="question.answer"> -->
-           <label for="answer"> Answer : (select correct one):</label>
+          <label for="answer"> Answer : (select correct one):</label>
           <select id="answer" name="answer"  required   class="form-control" ng-model="question.answer">
             <option>optionA</option>
             <option>optionB</option>
@@ -52,13 +51,13 @@
         <button type="submit" class="btn btn-success btn-block btn-large">Create an Question</button>
       </form>
 
-  </div>
-  <div class=" text-center">
-    <a  onclick="window.history.go(-1);"  class="btn btn-primary btn-large text-center h5">Go Back</a>
-    <a  ng-click="deleteSingleQuestion()" class="btn btn-danger btn-large text-center h5">Delete</a>
+    </div>
+    <div class=" text-center">
+      <a  onclick="window.history.go(-1);"  class="btn btn-primary btn-large text-center h5">Go Back</a>
+      <a  ng-click="deleteSingleQuestion()" class="btn btn-danger btn-large text-center h5">Delete</a>
 
+    </div>
+    <hr>
   </div>
-  <hr>
-</div>
 </div>
 </div>

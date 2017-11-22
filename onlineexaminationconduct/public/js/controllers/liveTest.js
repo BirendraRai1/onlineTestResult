@@ -1,9 +1,9 @@
 angular.module('MyApp')
-  .controller('liveTestCtrl', function($scope, $interval , $rootScope, $location, $route,  $routeParams, $window, $auth,Account, TestsApi) {
-    $scope.profile = $rootScope.currentUser;
-    $scope.testid = $routeParams.testid;
-    $scope.qLength = 0;
-    
+.controller('liveTestCtrl', function($scope, $interval , $rootScope, $location, $route,  $routeParams, $window, $auth,Account, TestsApi) {
+  $scope.profile = $rootScope.currentUser;
+  $scope.testid = $routeParams.testid;
+  $scope.qLength = 0;
+  
 
 
     //get questions from specific test
@@ -11,7 +11,7 @@ angular.module('MyApp')
       //$scope.testid = $routeParams.testid;
       console.log("test id----- "+$scope.testid);
       TestsApi.getSingleTestQuestions($scope.testid)
-        .then(function(response) {
+      .then(function(response) {
           //console.log(response.data);
           $scope.questions = response.data.data;
           console.log($scope.questions);
@@ -25,14 +25,14 @@ angular.module('MyApp')
           // timer logic start
           // store the interval promise in this variable
 
-                          $scope.incIndex = function(){
-                            $scope.qIndex++;
-                            $scope.start();
-                          }
-                        var promise;
-                        var qTimeTaken;
+          $scope.incIndex = function(){
+            $scope.qIndex++;
+            $scope.start();
+          }
+          var promise;
+          var qTimeTaken;
                         // starts the interval
-                          $scope.start = function() {
+                        $scope.start = function() {
                           // stops any running interval to avoid two intervals running at the same time
                           $scope.stop();
                           // store the interval promise
@@ -40,7 +40,7 @@ angular.module('MyApp')
                           qTimeTaken = $interval(incrementSeconds, 1000);
                         };
                         // stops the interval
-                          $scope.stop = function() {
+                        $scope.stop = function() {
                           $interval.cancel(promise);
                           $interval.cancel(qTimeTaken);
                         };
@@ -84,13 +84,13 @@ angular.module('MyApp')
           // timer logic stop
 
         })
-        .catch(function(response) {
-          console.log("error");
-          alert("Error!!!!, For More Info, Check Your Browser's Console")
-          $scope.messages = {
-            error: Array.isArray(response.data) ? response.data : [response.data]
-          };
-        });
+      .catch(function(response) {
+        console.log("error");
+        alert("Error!!!!, For More Info, Check Your Browser's Console")
+        $scope.messages = {
+          error: Array.isArray(response.data) ? response.data : [response.data]
+        };
+      });
     };
     //view single test end
     $scope.getSingleTestQuestions();
@@ -121,43 +121,43 @@ angular.module('MyApp')
       }
       console.log("time taken to answer----  "+$scope.qTime);
       TestsApi.sendSolution(questionid, testid, data)
-        .then(function(response) {
+      .then(function(response) {
           //console.log(response.data);
           console.log(response);
         })
-        .catch(function(response) {
-          console.log(JSON.stringify(response));
-          $scope.messages = {
-            error: Array.isArray(response.data) ? response.data : [response.data]
-          };
-        });
-        $scope.qTime = null;
-      };
+      .catch(function(response) {
+        console.log(JSON.stringify(response));
+        $scope.messages = {
+          error: Array.isArray(response.data) ? response.data : [response.data]
+        };
+      });
+      $scope.qTime = null;
+    };
     //store solution to db end
 
     // to add test attempted by user  start
     //update test start
-$scope.updateTest = function() {
-  var data = {
-    testAttemptedBy: $scope.profile._id
-  }
-  if ($scope.profile.email) {
-  console.log($scope.testid +", to update test");
-  TestsApi.testAttemptedBySend($scope.testid, data)
-    .then(function(response) {
-      console.log(response.data);
-      console.log("added user test attempt to db");
-    })
-    .catch(function(response) {
-      alert('error, check console for more info!')
-      console.log(response);
-    });
-  } else {
-    alert("You're Not Authorized To View This Page")
-    $location.path( "/dashboard" );
-  }
-};
+    $scope.updateTest = function() {
+      var data = {
+        testAttemptedBy: $scope.profile._id
+      }
+      if ($scope.profile.email) {
+        console.log($scope.testid +", to update test");
+        TestsApi.testAttemptedBySend($scope.testid, data)
+        .then(function(response) {
+          console.log(response.data);
+          console.log("added user test attempt to db");
+        })
+        .catch(function(response) {
+          alert('error, check console for more info!')
+          console.log(response);
+        });
+      } else {
+        alert("You're Not Authorized To View This Page")
+        $location.path( "/dashboard" );
+      }
+    };
 //update test end
 $scope.updateTest();
 // to add test attempted by user end
-  });
+});

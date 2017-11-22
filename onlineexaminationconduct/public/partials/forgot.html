@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="panel">
+    <div class="panel-body">
+      <form ng-submit="forgotPassword()">
+        <legend>Forgot Password</legend>
+        <div class="form-group">
+          <p>Change Password</p>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Email" class="form-control" ng-model="user.email" autofocus>
+          <p>
+            <input type="password" name="newPassword" value="" placeholder="newPassword" class="form-control" ng-model="user.password" autofocus>
+          </p>
+          <p>
+            <input type="password" name="confirmPassword" value="" placeholder="confirmPassword" class="form-control" ng-model="user.confirm">
+          </p>
+          <p class="submit">
+            <input type="submit" name="" value="changePassword">
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@ MobileNumber:7998381604/8073291140
 g
 # onlineTestTaking ~ Conducting test for better IQ candidates
 
-Live at  http://http://ec2-13-126-246-221.ap-south-1.compute.amazonaws.com/
+Live at  http://ec2-13-126-246-221.ap-south-1.compute.amazonaws.com/
 
 ## Description
 A Multiple choice test taking system with single correct option in which tests are tracked live 

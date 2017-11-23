@@ -2,7 +2,7 @@ angular.module('MyApp')
 .factory('TestsApi', function($http) {
   return {
     createTest: function(data) {
-      return $http.post('/tests/createTest', data);
+      return $http.post('/api/tests/createTest', data);
     },
     viewSingleTest: function(testid) {
       return $http.get('/api/tests/'+testid, null);

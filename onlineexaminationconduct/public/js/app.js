@@ -74,12 +74,12 @@ angular.module('MyApp', ['ngRoute', 'satellizer'])
   $authProvider.facebook({
     url: '/auth/facebook',
     clientId: '1961057867238481',
-    redirectUri: 'http://localhost:3000/auth/facebook/callback'
+    redirectUri: 'http://ec2-13-126-246-221.ap-south-1.compute.amazonaws.com/auth/facebook/callback'
   });
   $authProvider.google({
     url: '/auth/google',
     clientId: '73653751347-2s0c23r03u65letn11tdkdugrjbh67tq.apps.googleusercontent.com',
-    redirectUri:'http://localhost:3000/auth/google/callback'
+    redirectUri:'http://ec2-13-126-246-221.ap-south-1.compute.amazonaws.com/auth/google/callback'
   });
 
 
